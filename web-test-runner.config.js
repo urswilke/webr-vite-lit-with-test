@@ -99,6 +99,7 @@ export default {
     },
   },
   plugins: [
+    addVite(),
     // Detect browsers without modules (e.g. IE11) and transform to SystemJS
     // (https://modern-web.dev/docs/dev-server/plugins/legacy/).
     legacyPlugin({
@@ -110,11 +111,12 @@ export default {
           {
             name: 'lit-polyfill-support',
             path: 'node_modules/lit/polyfill-support.js',
-            test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || window.ShadyDOM && window.ShadyDOM.force",
+            test: "!('attachShadow' in Element.prototype)",
             module: false,
           },
         ],
       },
     }),
   ],
+  middleware: [useVite()],
 };
